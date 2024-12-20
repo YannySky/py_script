@@ -32,7 +32,7 @@ def decrypt_file(input_filename, output_filename, key):
     with open(input_filename, 'rb') as infile, open(output_filename, 'wb') as outfile:
         data = infile.read()
         if key is None:
-            key = calc_encrypt_key([0x2f, 0x22, 0xbb, 0x8b])
+            key = calc_encrypt_key(data)
         decrypted_data = xor_decrypt(data, key)
         outfile.write(decrypted_data)
         print(f'Decrypted {input_filename} to {output_filename}')
