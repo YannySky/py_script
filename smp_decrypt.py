@@ -59,9 +59,9 @@ mp3_file_head = [0x49, 0x44, 0x33, 0x3]
 
 def calc_encrypt_key(data):
     # 读取data前4位，这4位是mp3_file_head与密钥按位异或的结果,反算得到密钥
-    encrypt_key = [x ^ y for x, y in zip(data[:4], mp3_file_head)]
-    encrypt_key_str = {' '.join('0x' + f'{x:2x}' for x in encrypt_key)}
-    print(f'密钥：', encrypt_key_str)
+    encrypt_key = [data[i] ^ mp3_file_head[i] for i in range(4)]
+    # 输出以16进制形式展示的密钥数组
+    print(f'密钥：', [hex(x) for x in encrypt_key])
     return encrypt_key
 
 
